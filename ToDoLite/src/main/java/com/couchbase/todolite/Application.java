@@ -9,15 +9,14 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.preference.PreferenceManager;
 
 import com.couchbase.lite.Attachment;
 import com.couchbase.lite.CouchbaseLiteException;
 import com.couchbase.lite.Database;
 import com.couchbase.lite.Document;
 import com.couchbase.lite.Manager;
+import com.couchbase.lite.ManagerOptions;
 import com.couchbase.lite.QueryEnumerator;
 import com.couchbase.lite.QueryRow;
 import com.couchbase.lite.SavedRevision;
@@ -75,7 +74,9 @@ public class Application extends android.app.Application {
             Manager.enableLogging(Log.TAG_VIEW, Log.VERBOSE);
             Manager.enableLogging(Log.TAG_DATABASE, Log.VERBOSE);
 
-            manager = new Manager(new AndroidContext(getApplicationContext()), Manager.DEFAULT_OPTIONS);
+            ManagerOptions options = new ManagerOptions();
+            options.setStoreClassName("com.couchbase.lite.store.ForestDBStore");
+            manager = new Manager(new AndroidContext(getApplicationContext()), options);
         } catch (IOException e) {
             Log.e(TAG, "Cannot create Manager object", e);
             return;
