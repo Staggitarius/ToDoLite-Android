@@ -45,7 +45,8 @@ public class Application extends android.app.Application {
     private static final String SYNC_URL_HTTPS = BuildConfig.SYNC_URL_HTTPS;
     private static final String SYNC_URL = SYNC_URL_HTTP;
 
-    private static final String KEY_4_DATABASE = "Passw0rd";
+    //private static final String KEY_4_DATABASE = "Passw0rd";
+    private static final String KEY_4_DATABASE = null;
 
     private Manager manager;
     private Database database;
